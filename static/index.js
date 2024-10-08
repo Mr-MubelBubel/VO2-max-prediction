@@ -1,5 +1,5 @@
 for (const i of [1, 2, 3, 4]) {
-    $("#slider" + i).slider().on('change', function (event) {
+    document.getElementById("slider" + i).addEventListener('change', function (event) {
         const qs = new URLSearchParams({
             vo2max: document.getElementById("slider1").value,
             vlamax: document.getElementById("slider2").value,
