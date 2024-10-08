@@ -12,7 +12,7 @@ cors = CORS(app)
 def data():
     if request.method == "POST":
         vo2max = request.form['vo2max']
-        vlamax = request.form['vlamx']
+        vlamax = request.form['vlamax']
         bw = request.form['bw']
         ks1 = request.form['ks1']
         ks2 = request.form['ks2']
