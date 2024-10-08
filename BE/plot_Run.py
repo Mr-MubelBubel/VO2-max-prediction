@@ -121,7 +121,7 @@ def plot_Run(VO2max, vLamax, bw, Ks1, Ks2, VolRel,):
     values = {"CarbMax": carbmax, "Lactate": lactate, "Predicted Time": pred_t, "AT": at,
               "Percantage of VO2max": per_vo2max, "FatMax": fatmax}
 
-    plt.savefig('../plots/plot.png')
+    plt.savefig('../static/plots/plot.png')
 
     return values
 
