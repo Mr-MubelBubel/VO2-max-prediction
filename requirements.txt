@@ -21,7 +21,7 @@ matplotlib==3.9.2
 numpy==1.23.5
 opencv-python==4.6.0.66
 packaging==24.1
-Pillow==9.3.0
+Pillow==10.3.0
 pipenv==2022.11.30
 pipreq==0.4
 platformdirs==2.6.0
