@@ -19,7 +19,7 @@ kiwisolver==1.4.7
 MarkupSafe==3.0.1
 matplotlib==3.9.2
 numpy==1.23.5
-opencv-python==4.6.0.66
+opencv-python==4.8.1.78
 packaging==24.1
 Pillow==9.3.0
 pipenv==2022.11.30
