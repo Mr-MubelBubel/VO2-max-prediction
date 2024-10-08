@@ -18,43 +18,43 @@
                         <label for="slider1">VO2max:</label>
                         <input type="range" id="slider1" name="vo2max" min="40" max="80" step="0.1" value="55"
                                oninput="syncValue('vo2max', this.value)">
-                        <input type="text" id="vo2maxValue" value="55" oninput="syncSlider('vo2max', this.value)">
+                        <input type="text" id="vo2maxValue" value="55" oninput="syncSlider('slider1', this.value)">
                     </div>
                     <!-- Slider für vLamax -->
                     <div class="slider-wrapper">
                         <label for="slider2">vLamax:</label>
                         <input type="range" id="slider2" name="vLamax" min="0.2" max="1.5" step="0.01" value="0.5"
                                oninput="syncValue('vLamax', this.value)">
-                        <input type="text" id="vLamaxValue" value="0.5" oninput="syncSlider('vLamax', this.value)">
+                        <input type="text" id="vLamaxValue" value="0.5" oninput="syncSlider('slider2', this.value)">
                     </div>
                     <!-- Slider für Body Weight -->
                     <div class="slider-wrapper">
                         <label for="slider3">Body Weight:</label>
                         <input type="range" id="slider3" name="bodyWeight" min="40" max="100" step="0.1" value="70"
-                               oninput="syncValue('bodyWeight', this.value)">
+                               oninput="syncValue('bodyWeightValue', this.value)">
                         <input type="text" id="bodyWeightValue" value="70"
-                               oninput="syncSlider('bodyWeight', this.value)">
+                               oninput="syncSlider('slider3', this.value)">
                     </div>
                     <!-- Slider für Ks1 -->
                     <div class="slider-wrapper">
                         <label for="slider4">Ks1:</label>
                         <input type="range" id="slider4" name="ks1" min="0.2" max="0.3" step="0.01" value="0.25"
-                               oninput="syncValue('ks1', this.value)">
-                        <input type="text" id="ks1Value" value="0.25" oninput="syncSlider('ks1', this.value)">
+                               oninput="syncValue('ks1Value', this.value)">
+                        <input type="text" id="ks1Value" value="0.25" oninput="syncSlider('slider4', this.value)">
                     </div>
                     <!-- Slider für Ks2 -->
                     <div class="slider-wrapper">
                         <label for="slider5">Ks2:</label>
                         <input type="range" id="slider5" name="ks2" min="1" max="1.2" step="0.01" value="1.1"
-                               oninput="syncValue('ks2', this.value)">
-                        <input type="text" id="ks2Value" value="1.1" oninput="syncSlider('ks2', this.value)">
+                               oninput="syncValue('ks2Value', this.value)">
+                        <input type="text" id="ks2Value" value="1.1" oninput="syncSlider('slider5', this.value)">
                     </div>
                     <!-- Slider für VolRel -->
                     <div class="slider-wrapper">
                         <label for="slider6">VolRel:</label>
                         <input type="range" id="slider6" name="volRel" min="0.35" max="0.55" step="0.01" value="0.45"
-                               oninput="syncValue('volRel', this.value)">
-                        <input type="text" id="volRelValue" value="0.45" oninput="syncSlider('volRel', this.value)">
+                               oninput="syncValue('volRelValue', this.value)">
+                        <input type="text" id="volRelValue" value="0.45" oninput="syncSlider('slider6', this.value)">
                     </div>
 
                     <!-- Start-Button für den Rechenvorgang

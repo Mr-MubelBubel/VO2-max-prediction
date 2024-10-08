@@ -23,6 +23,7 @@ def data():
         return result
 
     else:
+        print("Problem")
         return render_template("index.html")
 
 
