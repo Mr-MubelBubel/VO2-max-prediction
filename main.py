@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_cors import CORS, cross_origin
 from BE import plot_Run
 
-# Create Flask App and config database
+# Create Flask App
 app = Flask(__name__)
 cors = CORS(app)
 

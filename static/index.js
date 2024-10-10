@@ -15,12 +15,15 @@ for (const i of [1, 2, 3, 4, 5, 6]) {
         })
             .then((response) => response.json())
             .then(data => {
-                document.getElementById("carb-max").innerHTML = data["CarbMax"],
-                    document.getElementById("lactate").innerHTML = data["Lactate"],
-                       document.getElementById("t-pred").innerHTML = data["Predicted Time"],
-                document.getElementById("at-speed").innerHTML = data["AT"],
-                    document.getElementById("at-percent").innerHTML = data["Percantage of VO2max"],
-                        document.getElementById("fat-max").innerHTML = data["FatMax"]
+                document.getElementById("carb-max").innerHTML = data["CarbMax"];
+                    document.getElementById("lactate").innerHTML = data["Lactate"];
+                       document.getElementById("t-pred").innerHTML = data["Predicted Time"];
+                document.getElementById("at-speed").innerHTML = data["AT"];
+                    document.getElementById("at-percent").innerHTML = data["Percantage of VO2max"];
+                        document.getElementById("fat-max").innerHTML = data["FatMax"];
+                document.getElementById("plot-pic").src = "../static/plots/plot.png?t=" + new Date().getTime();
+
+
             })
     })
 }

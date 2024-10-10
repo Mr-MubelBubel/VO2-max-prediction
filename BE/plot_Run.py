@@ -1,13 +1,10 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from pylab import rcParams
-from static import plots
-
+from flask import current_app
 
 def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
 
-    vlaues = {}
     RunningEco = 12.5
     Kel = 2
     # generate oxygen steady-states
@@ -111,8 +108,11 @@ def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
 
     # printing 2.5 mmol/L velocity to screen
     print(
-        f'Velocity at 2.5 mmol/L steady state lactate is {round(La_25, 2)} m/s \nPredicted Marathon finish: {finish_time} h')
+        f'Velocity at 2.5 mmol/L steady state lactate is {round(La_25, 2)} m/s'
+        f'\nPredicted Marathon finish: {finish_time} h'
+    )
 
+    # Set vars for output
     at = round(sAT, 2)
     per_vo2max = round(pcVO2maxAT * 100, 1)
     fatmax = round(s_Fmx, 2)
@@ -120,18 +120,23 @@ def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
     lactate = round(La_25, 2)
     pred_t = finish_time
 
+    # create dir for return
     values = {"CarbMax": carbmax, "Lactate": lactate, "Predicted Time": pred_t, "AT": at,
               "Percantage of VO2max": per_vo2max, "FatMax": fatmax}
 
+    # cheack path or create a new one
+    ## join flask-app for plot saving
     os.makedirs('../static/plots', exist_ok=True)
-    save_path = os.path.abspath('../static/plots/plot.png')
+    save_path = os.path.join(current_app.root_path, 'static', 'plots', 'plot.png')
+
+    # save plot and return values
     try:
         plt.savefig(save_path)
         print("Plot saved successfully!")
     except Exception as e:
         print(f"Error while saving plot: {e}")
-    plt.show()
 
-    print(values)
+    plt.close()
+
     return values
 
