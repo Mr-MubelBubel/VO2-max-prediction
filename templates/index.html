@@ -17,14 +17,14 @@
                     <div class="slider-wrapper">
                         <label for="slider1">VO2max:</label>
                         <input type="range" id="slider1" name="vo2max" min="40" max="80" step="0.1" value="55"
-                               oninput="syncValue('vo2max', this.value)">
+                               oninput="syncValue('vo2maxValue', this.value)">
                         <input type="text" id="vo2maxValue" value="55" oninput="syncSlider('slider1', this.value)">
                     </div>
                     <!-- Slider für vLamax -->
                     <div class="slider-wrapper">
                         <label for="slider2">vLamax:</label>
                         <input type="range" id="slider2" name="vLamax" min="0.2" max="1.5" step="0.01" value="0.5"
-                               oninput="syncValue('vLamax', this.value)">
+                               oninput="syncValue('vLamaxValue', this.value)">
                         <input type="text" id="vLamaxValue" value="0.5" oninput="syncSlider('slider2', this.value)">
                     </div>
                     <!-- Slider für Body Weight -->
@@ -65,26 +65,28 @@
         <div class="box">
             <div id="output-container">
                 <h2>Results</h2>
-                <p><strong>CarbMax:</strong><span id="carb-max"> - </span>m/s</p>
+                <p><strong>CarbMax:</strong> <span id="carb-max"> - </span>m/s</p>
                 <p><strong>Velocity:</strong> <span id="vel"> 2.5 </span>mmol/L </p>
                 <p><strong>Lactate:</strong> <span id="lactate"> - </span>m/s</p>
                 <p><strong>Predicted Marathon finish:</strong> <span id="t-pred"> - </span>h</p>
                 <p><strong>AT:</strong> <span id="at-speed"> - </span>m/s</p>
-                <p><strong>Percentage of VO2max:</strong><span id="at-percent"> - </span>%</p>
+                <p><strong>Percentage of VO2max:</strong> <span id="at-percent"> - </span>%</p>
                 <p><strong>FatMax:</strong> <span id="fat-max"> - </span>m/s</p>
             </div>
         </div>
     </div>
     <div class="right-section">
         <div class="box">
-            <img src="../static/plots/plot.png" alt="Data Plot">
+            <div class="content">
+                <img id="plot-pic" src="../static/plot.png" alt="Data Plot">
+            </div>
         </div>
     </div>
 </div>
 <script>
     // Synchronisiert den Slider-Wert mit dem Eingabefeld
     function syncValue(sliderId, value) {
-        document.getElementById(sliderId + 'Value').value = value;
+        document.getElementById(sliderId).value = value;
     }
 
     // Synchronisiert das Eingabefeld mit dem Slider

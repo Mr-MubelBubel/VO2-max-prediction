@@ -11,23 +11,22 @@ cors = CORS(app)
 @cross_origin()
 def data():
     if request.method == "POST":
-        vo2max = request.form['vo2max']
-        vlamax = request.form['vlamax']
-        bw = request.form['bw']
-        ks1 = request.form['ks1']
-        ks2 = request.form['ks2']
-        volrel = request.form['volrel']
+        vo2max = float(request.form['vo2max'])
+        vlamax = float(request.form['vlamax'])
+        bw = float(request.form['bw'])
+        ks1 = float(request.form['ks1'])
+        ks2 = float(request.form['ks2'])
+        volrel = float(request.form['volrel'])
 
         result = pred(vo2max, vlamax, bw, ks1, ks2, volrel)
         print(result)
         return result
 
     else:
-        print("Problem")
         return render_template("index.html")
 
 
-def pred(vo2max: float, vlamax: float, bw: int, ks1: float, ks2: float, volrel: float):
+def pred(vo2max: float, vlamax: float, bw: float, ks1: float, ks2: float, volrel: float):
     output = plot_Run.plot_Run(vo2max, vlamax, bw, ks1, ks2, volrel)
     return output
 

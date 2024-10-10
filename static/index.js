@@ -1,4 +1,4 @@
-for (const i of [1, 2, 3, 4]) {
+for (const i of [1, 2, 3, 4, 5, 6]) {
     document.getElementById("slider" + i).addEventListener('change', function (event) {
         const qs = new URLSearchParams({
             vo2max: document.getElementById("slider1").value,

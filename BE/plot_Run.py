@@ -1,9 +1,11 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from pylab import rcParams
+from static import plots
 
 
-def plot_Run(VO2max, vLamax, bw, Ks1, Ks2, VolRel,):
+def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
 
     vlaues = {}
     RunningEco = 12.5
@@ -121,7 +123,15 @@ def plot_Run(VO2max, vLamax, bw, Ks1, Ks2, VolRel,):
     values = {"CarbMax": carbmax, "Lactate": lactate, "Predicted Time": pred_t, "AT": at,
               "Percantage of VO2max": per_vo2max, "FatMax": fatmax}
 
-    plt.savefig('../static/plots/plot.png')
+    os.makedirs('../static/plots', exist_ok=True)
+    save_path = os.path.abspath('../static/plots/plot.png')
+    try:
+        plt.savefig(save_path)
+        print("Plot saved successfully!")
+    except Exception as e:
+        print(f"Error while saving plot: {e}")
+    plt.show()
 
+    print(values)
     return values
 

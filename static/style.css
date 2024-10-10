@@ -18,7 +18,7 @@ body, html {
 .left-section {
     display: flex;
     flex-direction: column;
-    width: 50%; /* Half the screen for left section */
+    width: 60%; /* Half the screen for left section */
 }
 
 .left-section .box {
@@ -33,7 +33,7 @@ body, html {
 }
 
 .right-section {
-    width: 50%; /* Half the screen for right section */
+    width: 40%; /* Half the screen for right section */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,6 +45,7 @@ body, html {
     width: 80%;
     height: 80%;
     display: flex;
+    aspect-ratio: 1 / 1.414;
     /*justify-content: center;*/
     align-items: center;
     background-color: #ffffff;
