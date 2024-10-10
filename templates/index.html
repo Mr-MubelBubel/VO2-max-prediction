@@ -6,6 +6,8 @@
     <title>Slider Example</title>
     <link rel="stylesheet" href="../static/style.css">
     <script src="../static/index.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -31,9 +33,8 @@
                     <div class="slider-wrapper">
                         <label for="slider3">Body Weight:</label>
                         <input type="range" id="slider3" name="bodyWeight" min="40" max="100" step="0.1" value="70"
-                               oninput="syncValue('bodyWeightValue', this.value)">
-                        <input type="text" id="bodyWeightValue" value="70"
-                               oninput="syncSlider('slider3', this.value)">
+                               oninput="syncValue('bwValue', this.value)">
+                        <input type="text" id="bwValue" value="70" oninput="syncSlider('slider3', this.value)">
                     </div>
                     <!-- Slider für Ks1 -->
                     <div class="slider-wrapper">
@@ -56,9 +57,6 @@
                                oninput="syncValue('volRelValue', this.value)">
                         <input type="text" id="volRelValue" value="0.45" oninput="syncSlider('slider6', this.value)">
                     </div>
-
-                    <!-- Start-Button für den Rechenvorgang
-                    <button class="button" id="start-btn">Start Calculation</button>-->
                 </div>
             </form>
         </div>
@@ -72,6 +70,9 @@
                 <p><strong>AT:</strong> <span id="at-speed"> - </span>m/s</p>
                 <p><strong>Percentage of VO2max:</strong> <span id="at-percent"> - </span>%</p>
                 <p><strong>FatMax:</strong> <span id="fat-max"> - </span>m/s</p>
+                <br>
+                <!-- Button to trigger PDF generation -->
+                <button class="modern-btn" onclick="generatePDF()">Download PDF</button>
             </div>
         </div>
     </div>
@@ -85,17 +86,142 @@
 </div>
 <script>
     // Synchronisiert den Slider-Wert mit dem Eingabefeld
-    function syncValue(sliderId, value) {
-        document.getElementById(sliderId).value = value;
+    function syncValue(textFeldID, value) {
+        document.getElementById(textFeldID).value = value;
     }
 
     // Synchronisiert das Eingabefeld mit dem Slider
     function syncSlider(sliderId, value) {
         const slider = document.getElementById(sliderId);
-        if (value >= slider.min && value <= slider.max) {
-            slider.value = value;
+        const numValue = parseFloat(value);
+
+        console.log(`Input Value: ${numValue}`);  // Debugging Ausgabe
+
+        // Überprüfen, ob der Wert innerhalb der Slider-Min/Max-Werte liegt
+        if (!isNaN(numValue) && numValue >= parseFloat(slider.min) && numValue <= parseFloat(slider.max)) {
+            slider.value = numValue;
+        } else {
+            console.log("Value out of range or invalid.");
         }
     }
+
+    function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+
+    // Set modern font and style
+    pdf.setFont("Helvetica", "normal");
+    pdf.setFontSize(12);
+
+    // Plot image source
+    const plotImageSrc = document.getElementById('plot-pic').src;
+
+    // Box 1 slider values
+    const box1Values = {
+        vo2Max: document.getElementById('slider1').value,
+        vLamax: document.getElementById('slider2').value,
+        bodyWeight: document.getElementById('slider3').value,
+        ks1: document.getElementById('slider4').value,
+        ks2: document.getElementById('slider5').value,
+        volRel: document.getElementById('slider6').value
+    };
+
+    // Box 1 labels and units
+    const box1Labels = [
+        'VO2max',
+        'vLamax',
+        'Body Weight',
+        'Ks1',
+        'Ks2',
+        'VolRel'
+    ];
+    const box1units = [
+        'ml/kg/min',
+        'mmol/l',
+        'kg',
+        '',
+        '',
+        '%'
+    ];
+
+    // Box 2 values (computed from Flask)
+    const box2Values = {
+        carbMax: document.getElementById('carb-max').innerText,
+        lactate: document.getElementById('lactate').innerText,
+        tPred: document.getElementById('t-pred').innerText,
+        atSpeed: document.getElementById('at-speed').innerText,
+        atPercent: document.getElementById('at-percent').innerText,
+        fatMax: document.getElementById('fat-max').innerText
+    };
+
+    // Box 2 labels and units
+    const box2Labels = [
+        'CarbMax',
+        'Lactate Steady State',
+        'Predicted Marathon Time',
+        'AT Speed',
+        'AT Percent',
+        'FatMax'
+    ];
+    const box2units = [
+        'm/s',
+        'm/s',
+        'h',
+        'm/s',
+        '% of VO2max',
+        'm/s'
+    ];
+
+    // Add Box 1 slider values (above the plot) with modern styling
+    pdf.setFont("Helvetica", "bold")
+    pdf.setFontSize(16);
+    pdf.text('Athlete Data:', 20, 20);
+
+    pdf.setFont("Helvetica", "normal")
+    pdf.setFontSize(12);
+    pdf.setTextColor(60, 60, 60);
+    let yPosition = 30;
+    Object.keys(box1Values).forEach((key, index) => {
+        pdf.text(`${box1Labels[index]}: ${box1Values[key]} ${box1units[index]}`, 20, yPosition);
+        yPosition += 10;
+    });
+
+    // Load and add the plot image to the PDF
+    const img = new Image();
+    img.src = plotImageSrc;
+    img.onload = function() {
+        // Add the plot image
+        yPosition += 10;
+        pdf.addImage(img, 'PNG', 20, yPosition, 170, 100); // Adjust size as needed
+        yPosition += 110;  // Adjust for plot height
+
+        // Add Box 2 values (below the plot) with modern styling
+        pdf.setFont("Helvetica", "bold")
+        pdf.setFontSize(16);
+        pdf.text('Performance Metrics:', 20, yPosition);
+
+        pdf.setFont("Helvetica", "normal")
+        pdf.setFontSize(12);
+        pdf.setTextColor(60, 60, 60);
+        yPosition += 10;
+        Object.keys(box2Values).forEach((key, index) => {
+            pdf.text(`${box2Labels[index]}: ${box2Values[key]} ${box2units[index]}`, 20, yPosition);
+            yPosition += 10;
+        });
+
+        // Set final font style and download PDF
+        pdf.setFont("Helvetica", "normal");
+        pdf.setFontSize(10);
+        pdf.setTextColor(100, 100, 100);
+        pdf.text("Generated with ...", 20, yPosition + 20);
+
+        // Save the PDF
+        pdf.save("plot_with_values.pdf");
+    };
+}
+
+
+
 </script>
 </body>
 </html>

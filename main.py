@@ -19,7 +19,6 @@ def data():
         volrel = float(request.form['volrel'])
 
         result = pred(vo2max, vlamax, bw, ks1, ks2, volrel)
-        print(result)
         return result
 
     else:

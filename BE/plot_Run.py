@@ -40,9 +40,6 @@ def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
     # percentage of VO2max
     pcVO2maxAT = sAT * RunningEco / VO2max
 
-    # print to console
-    print(f'AT is at {round(sAT, 2)} m/s, {round(pcVO2maxAT * 100, 1)}% of VO2max, FatMax is at {round(s_Fmx, 2)} m/s')
-
     # Creating canvas for plots
     fig, ((ax1, ax2), (ax4, ax5)) = plt.subplots(2, 2, figsize=(20, 10))
 
@@ -96,7 +93,6 @@ def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
 
     # indicating 90g/h of carb. utilization as CarbMax
     CarbMax = Intensity[np.min(np.where(CHO_util >= 90))]
-    print(f'CarbMax is at {round(CarbMax, 2)} m/s')
 
     # Indicating lactate steady concentration at 2.5 mmol/L
     arg_25 = np.min(np.where(Class >= 2.5))
@@ -105,12 +101,6 @@ def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
     # Caculating predicted Marathon finish time as str in [h:mm]
     finish_time = str(int(42195 / La_25 / 3600)) + ":" + str(
         int(((42195 / La_25 / 3600) - int(42195 / La_25 / 3600)) * 60))
-
-    # printing 2.5 mmol/L velocity to screen
-    print(
-        f'Velocity at 2.5 mmol/L steady state lactate is {round(La_25, 2)} m/s'
-        f'\nPredicted Marathon finish: {finish_time} h'
-    )
 
     # Set vars for output
     at = round(sAT, 2)
@@ -132,7 +122,6 @@ def plot_Run(VO2max: float, vLamax, bw, Ks1, Ks2, VolRel):
     # save plot and return values
     try:
         plt.savefig(save_path)
-        print("Plot saved successfully!")
     except Exception as e:
         print(f"Error while saving plot: {e}")
 

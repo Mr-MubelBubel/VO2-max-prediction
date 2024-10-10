@@ -172,3 +172,31 @@ img {
     max-width: 100%; /* Bild anpassen */
     height: auto; /* Höhe automatisch anpassen */
 }
+
+.modern-btn {
+    background-color: #CAF0F8; /* Blaue Hintergrundfarbe */
+    border: none;
+    color: #000000; /* Schwarze Schriftfarbe */
+    padding: 15px 30px; /* Polsterung für größere Fläche */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px; /* Runde Ecken */
+    transition: all 0.3s ease; /* Sanfter Übergangseffekt */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+.modern-btn:hover {
+    background-color: #00B4D8; /* Dunkleres Blau beim Hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Größerer Schatten beim Hover */
+    transform: translateY(-2px); /* Leichter "Lift" Effekt beim Hover */
+}
+
+.modern-btn:active {
+    background-color: #03045E; /* Noch dunkleres Blau beim Drücken */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten beim Drücken */
+    transform: translateY(0); /* Button geht zurück zum ursprünglichen Zustand */
+}
