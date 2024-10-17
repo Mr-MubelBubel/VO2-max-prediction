@@ -18,7 +18,7 @@ body, html {
 .left-section {
     display: flex;
     flex-direction: column;
-    width: 60%; /* Half the screen for left section */
+    width: 65%; /* Half the screen for left section */
 }
 
 .left-section .box {
@@ -33,7 +33,7 @@ body, html {
 }
 
 .right-section {
-    width: 40%; /* Half the screen for right section */
+    width: 35%; /* Half the screen for right section */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,6 +76,7 @@ body, html {
     margin-right: 20px;
 }
 
+/* Gemeinsame Slider-Stile für alle Browser */
 .slider-wrapper input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -89,6 +90,7 @@ body, html {
     transition: background 0.3s ease;
 }
 
+/* Stile für WebKit-basierte Browser (Chrome, Safari, Edge) */
 .slider-wrapper input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -100,12 +102,67 @@ body, html {
     transition: background 0.3s ease;
 }
 
+/* Hover-Effekt für WebKit */
 .slider-wrapper input[type="range"]:hover {
     background: #ccc;
 }
 
 .slider-wrapper input[type="range"]:hover::-webkit-slider-thumb {
     background: #03045E;
+}
+
+/* Stile für Firefox */
+.slider-wrapper input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #0077B6;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slider-wrapper input[type="range"]:hover::-moz-range-thumb {
+    background: #03045E;
+}
+
+/* Firefox Slider-Track (Hintergrund des Sliders) */
+.slider-wrapper input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+/* Anpassungen für die IE- und Edge-Unterstützung */
+.slider-wrapper input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #0077B6;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slider-wrapper input[type="range"]:hover::-ms-thumb {
+    background: #03045E;
+}
+
+.slider-wrapper input[type="range"]::-ms-track {
+    width: 100%;
+    height: 10px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.slider-wrapper input[type="range"]::-ms-fill-lower {
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.slider-wrapper input[type="range"]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 5px;
 }
 
 .slider-wrapper input[type="text"] {
