@@ -52,74 +52,6 @@ body, html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for the Dropdown Wrapper */
-.dropdown-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 220px;
-    margin-top: 10px;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Custom Select Styling */
-.custom-select select {
-    appearance: none; /* Remove default arrow for most browsers */
-    -webkit-appearance: none; /* Remove default arrow in WebKit-based browsers */
-    -moz-appearance: none; /* Remove default arrow in Firefox */
-    width: 100%;
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 2px solid #0077B6;
-    border-radius: 8px;
-    background-color: #F0F4F8;
-    color: #333;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Hover and focus states for select */
-.custom-select select:hover, .custom-select select:focus {
-    border-color: #03045E;
-    background-color: #fff;
-}
-
-/* Add a custom arrow using a background image */
-.custom-select {
-    position: relative;
-}
-
-.custom-select::after {
-    content: '\25BC'; /* Unicode for downward arrow */
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #0077B6;
-    font-size: 12px;
-}
-
-/* Change arrow color on hover */
-.custom-select select:hover ~ .custom-select::after,
-.custom-select select:focus ~ .custom-select::after {
-    color: #03045E;
-}
-
-/* Style the options */
-.custom-select select option {
-    font-size: 16px;
-    padding: 10px;
-    color: #333;
-}
-
-/* Custom Dropdown for Firefox */
-.custom-select select:-moz-focusring {
-    color: transparent;
-    text-shadow: 0 0 0 #333;
-}
-
 #sliders-container {
     display: flex;
     flex-direction: column;
@@ -144,7 +76,7 @@ body, html {
     margin-right: 20px;
 }
 
-/* slider-styles for all browsers*/
+/* Gemeinsame Slider-Stile für alle Browser */
 .slider-wrapper input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -158,7 +90,7 @@ body, html {
     transition: background 0.3s ease;
 }
 
-/* Styles for WebKit-based browsers (Chrome, Safari, Edge) */
+/* Stile für WebKit-basierte Browser (Chrome, Safari, Edge) */
 .slider-wrapper input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -170,7 +102,7 @@ body, html {
     transition: background 0.3s ease;
 }
 
-/* hover-effect for WebKit browsers */
+/* Hover-Effekt für WebKit */
 .slider-wrapper input[type="range"]:hover {
     background: #ccc;
 }
@@ -179,7 +111,7 @@ body, html {
     background: #03045E;
 }
 
-/* styles for Firefox */
+/* Stile für Firefox */
 .slider-wrapper input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
@@ -193,7 +125,7 @@ body, html {
     background: #03045E;
 }
 
-/* Firefox Slider-Track (background of sliders) */
+/* Firefox Slider-Track (Hintergrund des Sliders) */
 .slider-wrapper input[type="range"]::-moz-range-track {
     width: 100%;
     height: 10px;
@@ -201,7 +133,7 @@ body, html {
     border-radius: 5px;
 }
 
-/* correction for the IE- und Edge-Support */
+/* Anpassungen für die IE- und Edge-Unterstützung */
 .slider-wrapper input[type="range"]::-ms-thumb {
     width: 20px;
     height: 20px;
@@ -294,34 +226,34 @@ body, html {
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%; /* Bild anpassen */
+    height: auto; /* Höhe automatisch anpassen */
 }
 
 .modern-btn {
-    background-color: #CAF0F8;
+    background-color: #CAF0F8; /* Blaue Hintergrundfarbe */
     border: none;
-    color: #000000;
-    padding: 15px 30px;
+    color: #000000; /* Schwarze Schriftfarbe */
+    padding: 15px 30px; /* Polsterung für größere Fläche */
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 30px;
-    transition: all 0.3s ease;
+    border-radius: 30px; /* Runde Ecken */
+    transition: all 0.3s ease; /* Sanfter Übergangseffekt */
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
 }
 
 .modern-btn:hover {
-    background-color: #00B4D8;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    background-color: #00B4D8; /* Dunkleres Blau beim Hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Größerer Schatten beim Hover */
+    transform: translateY(-2px); /* Leichter "Lift" Effekt beim Hover */
 }
 
 .modern-btn:active {
-    background-color: #03045E;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
+    background-color: #03045E; /* Noch dunkleres Blau beim Drücken */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten beim Drücken */
+    transform: translateY(0); /* Button geht zurück zum ursprünglichen Zustand */
 }
